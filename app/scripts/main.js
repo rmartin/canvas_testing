@@ -19,10 +19,15 @@
         array = [[75, 100], [200, 100], [325, 100], [450, 100]];
 
 	function drawData() {
+		var startX;
+
+		for(var k = 0; k < array.length; k++){
+			startX = array[k][0];
+		}
 		for(var i = 0; i < array.length; i++){
 			// draw lines
 			context.beginPath();
-			context.moveTo(0, 0);
+			context.moveTo(startX, 0);
 			context.lineTo(array[i][0], array[i][1]);
 			context.lineWidth = 2;
 			context.lineCap = 'round';
@@ -56,7 +61,7 @@
 		}
 	}
 
-	function animate(point, canvas, context, startTime) {
+	function animate(context, startTime) {
 	        // update
 	        var time = (new Date()).getTime() - startTime;
 
@@ -64,31 +69,25 @@
 	        // pixels / second
 	        var newX = linearSpeed * time / 1000;
 
-	        point.x += 6;
-
 	        // clear
-	        context.clearRect(0, 0, canvasW, canvasH);
+	        context.clearRect(0, 0, canvas.width, canvas.height);
 
-	        drawData(point, context);
+	        drawData();
 
 	        // request new frame
 	        requestAnimFrame(function() {
-	          animate(point, canvas, context, startTime);
+	          animate(context, startTime);
 	        });
 	      }
 
-	drawData(point, context);
+	drawData();
 
 	     // wait one second before starting animation
 	     setTimeout(function() {
 	       var startTime = (new Date()).getTime();
-	       animate(point, canvas, context, startTime);
+	       animate(context, startTime);
 	     }, 1000);
 
-	var point = {
-		x: '',
-		y: ''
-	}
 
 	
 	
