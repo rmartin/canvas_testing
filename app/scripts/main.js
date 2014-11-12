@@ -71,14 +71,18 @@
 		return true;
 	}
 
-	for(var i = 0; i < tracking.length; i++){
-		var x = tracking[i][1],
-			y = tracking[i][2];
-		requestAnimationFrame(function(x, y){
-			drawData(x, y);
-		});
-	}
+	// for(var i = 0; i < tracking.length; i++){
+	// 	var x = tracking[i][1],
+	// 		y = tracking[i][2];
+	// 	requestAnimationFrame(function(x, y){
+	// 		drawData(x, y);
+	// 	});
+	// }
+
+	
+	requestAnimationFrame(drawData(0, 0));	
 
 
+	
 	
 })();
