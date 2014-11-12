@@ -19,6 +19,8 @@
         array = [[75, 100], [200, 100], [325, 100], [450, 100]];
 
 	function drawData() {
+		context.save();
+		context.clearRect(0,0, canvas.width, canvas.height);
 		var startX;
 
 		for(var k = 0; k < array.length; k++){
@@ -59,34 +61,10 @@
 
 
 		}
+		 requestAnimationFrame(drawData);
 	}
 
-	function animate(context, startTime) {
-	        // update
-	        var time = (new Date()).getTime() - startTime;
-
-	        var linearSpeed = 100;
-	        // pixels / second
-	        var newX = linearSpeed * time / 1000;
-
-	        // clear
-	        context.clearRect(0, 0, canvas.width, canvas.height);
-
-	        drawData();
-
-	        // request new frame
-	        requestAnimFrame(function() {
-	          animate(context, startTime);
-	        });
-	      }
-
-	drawData();
-
-	     // wait one second before starting animation
-	     setTimeout(function() {
-	       var startTime = (new Date()).getTime();
-	       animate(context, startTime);
-	     }, 1000);
+	requestAnimationFrame(drawData);
 
 
 	
