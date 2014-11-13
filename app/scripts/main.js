@@ -13,17 +13,17 @@
 		canvasH = canvas.height,
 		ctx = canvas.getContext('2d');
 
-    var requestId;
+	var requestId;
 
-    var frame = [[75, 100], [200, 100], [325, 100], [450, 100], [525, 100]],
-    	words = ['hello01', 'hello02', 'hello03', 'hello04' ],
+	var frame = [[75, 100], [200, 100], [325, 100], [450, 100], [525, 100]],
+		words = ['hello01', 'hello02', 'hello03', 'hello04' ],
 		posX = 0,
 		radius = 50,
 		pixelsPerFrame = 5,
 		text;
 
     function draw(posX){ 
-    	for(var i = 0; i < frame.length; i++){   	
+		for(var i = 0; i < frame.length; i++){
 			ctx.beginPath();
 			ctx.moveTo(posX, 0);
 			ctx.lineTo(frame[i][0], 200);
@@ -56,7 +56,8 @@
 			posX += pixelsPerFrame;
 			draw(posX);								
 		} else {
-			cancelAnimationFrame(requestId);
+			posX = 0;
+			draw(posX);
 		}
 	}
 
