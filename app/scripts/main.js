@@ -36,7 +36,7 @@
 				ctx.stroke();
 
 				ctx.beginPath();
-				ctx.arc(posX, 0, radius, 0, 2 * Math.PI, false);
+				ctx.arc(200, 200, radius, 0, 2 * Math.PI, false);
 				ctx.lineWidth = 2;
 				ctx.strokeStyle = '#fff';
 				ctx.stroke();
@@ -46,7 +46,7 @@
 				ctx.textAlign = 'center';
 				ctx.textBasline = 'middle';
 				ctx.fillStyle = '#fff';
-				ctx.fillText(text, posX, 0);
+				ctx.fillText(text, 200, 200);
     			}
    }
 
