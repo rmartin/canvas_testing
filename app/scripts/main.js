@@ -8,10 +8,15 @@
 				};
 		})();
 
-	var canvas = document.getElementById('myCanvas'),
-		canvasW = canvas.width,
-		canvasH = canvas.height,
-		ctx = canvas.getContext('2d');
+	var canvas = document.getElementById('canvas-container'),
+		ctx = canvas.getContext('2d'),
+		// get window dimensions
+		W = window.innerWidth,
+		H = window.innerHeight;
+
+	//set canvas dimensions to window dimensions
+	canvas.width = W;
+	canvas.height = H;
 
 	var requestId;
 
@@ -22,7 +27,7 @@
 		pixelsPerFrame = 5,
 		text;
 
-    function draw(posX){ 
+    function draw(posX, posY){ 
 		for(var i = 0; i < frame.length; i++){
 			ctx.beginPath();
 			ctx.moveTo(posX, 0);
@@ -49,13 +54,16 @@
 
 	function animate(){
 		requestId = requestAnimationFrame(animate);
-
-		if(posX <= canvas.width) {
-			// clear the ctx
+		// get last x position of the array
+		var last = frame[frame.length - 1],
+			upperBound = last[0];
+		if(posX <= upperBound) {
+			//clear canvas and increment x position
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			posX += pixelsPerFrame;
 			draw(posX);								
 		} else {
+			// reset position back to zero to create an infinite loop
 			posX = 0;
 			draw(posX);
 		}
