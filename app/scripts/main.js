@@ -15,24 +15,25 @@
 
     var requestId;
 
-    var words = ['hello01', 'hello02', 'hello03', 'hello04' ],
+    var frame = [[75, 100], [200, 100], [325, 100], [450, 100], [525, 100]],
+    	words = ['hello01', 'hello02', 'hello03', 'hello04' ],
 		posX = 0,
 		radius = 50,
 		pixelsPerFrame = 5,
 		text;
 
-    function draw(posX){
-		for(var i = 0; i < words.length; i++){
+    function draw(posX){ 
+    	for(var i = 0; i < frame.length; i++){   	
 			ctx.beginPath();
 			ctx.moveTo(posX, 0);
-			ctx.lineTo(200, 200);
+			ctx.lineTo(frame[i][0], 200);
 			ctx.lineWidth = 2;
 			ctx.lineCap = 'round';
 			ctx.strokeStyle = '#fff';
 			ctx.stroke();
 
 			ctx.beginPath();
-			ctx.arc(200, 200, radius, 0, 2 * Math.PI, false);
+			ctx.arc(frame[i][0], 200, radius, 0, 2 * Math.PI, false);
 			ctx.lineWidth = 2;
 			ctx.strokeStyle = '#fff';
 			ctx.stroke();
@@ -42,20 +43,18 @@
 			ctx.textAlign = 'center';
 			ctx.textBasline = 'middle';
 			ctx.fillStyle = '#fff';
-			ctx.fillText(text, 200, 200);
+			ctx.fillText(text, frame[i][0], 200);
 		}
- }
+	}
 
 	function animate(){
 		requestId = requestAnimationFrame(animate);
 
 		if(posX <= canvas.width) {
-			
+			// clear the ctx
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			// ctx.fillRect(posX, 0, boxWidth, canvas.height);
 			posX += pixelsPerFrame;
-			draw(posX);
-			
+			draw(posX);								
 		} else {
 			cancelAnimationFrame(requestId);
 		}
